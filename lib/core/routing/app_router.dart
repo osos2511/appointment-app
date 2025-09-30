@@ -1,6 +1,7 @@
 import 'package:appoinment_app/core/routing/routes.dart';
 import 'package:appoinment_app/features/login/ui/login_screen.dart';
 import 'package:appoinment_app/features/onboarding/onboarding_screen.dart';
+import 'package:appoinment_app/features/sign_up/ui/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter{
@@ -12,6 +13,8 @@ class AppRouter{
         return MaterialPageRoute(builder: (context) => OnboardingScreen());
         case Routes.loginScreen:
         return MaterialPageRoute(builder: (context) => LoginScreen());
+        case Routes.signUpScreen:
+        return MaterialPageRoute(builder: (context) => SignUpScreen());
 
       default:
         return MaterialPageRoute(builder: (context) =>
