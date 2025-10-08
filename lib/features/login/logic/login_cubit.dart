@@ -1,0 +1,25 @@
+//step 9
+import 'package:appoinment_app/core/networking/api_result.dart';
+import 'package:appoinment_app/features/login/data/models/login_request_body.dart';
+import 'package:appoinment_app/features/login/data/repos/login_repo.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'login_state.dart';
+
+class LoginCubit extends Cubit<LoginState> {
+  final LoginRepo _loginRepo;
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  LoginCubit(this._loginRepo) : super(const LoginState.initial());
+  void emitLoginStates(LoginRequestBody loginRequestBody)async{
+    emit(const LoginState.loading());
+    final response=await _loginRepo.login(loginRequestBody);
+    response.when(success: (loginResponse){
+      emit(LoginState.success(loginResponse));
+    },failure: (error){
+      emit(LoginState.error(error: error.apiErrorModel.message??''));
+    });
+  }
+}
