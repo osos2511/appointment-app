@@ -1,7 +1,7 @@
-import 'package:appoinment_app/core/theming/colors.dart';
-import 'package:appoinment_app/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../theming/colors.dart';
+import '../theming/styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
@@ -15,7 +15,6 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
-
   const AppTextFormField({
     super.key,
     this.contentPadding,
@@ -34,33 +33,52 @@ class AppTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         isDense: true,
-        contentPadding:contentPadding?? REdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        focusedBorder: focusedBorder?? OutlineInputBorder(
-          borderSide: BorderSide(color: ColorsManager.mainBlue, width: 1.3.w),
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        enabledBorder:enabledBorder?? OutlineInputBorder(
-          borderSide: BorderSide(
-            color: ColorsManager.lighterGray,
-            width: 1.3.w,
+        contentPadding: contentPadding ??
+            EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+        focusedBorder: focusedBorder ??
+            OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorsManager.mainBlue,
+                width: 1.3,
+              ),
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+        enabledBorder: enabledBorder ??
+            OutlineInputBorder(
+              borderSide: const BorderSide(
+                color: ColorsManager.lighterGray,
+                width: 1.3,
+              ),
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 1.3,
           ),
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(16.0),
         ),
-        hintStyle:hintStyle?? TextStyles.font14DarkBlueMedium,
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 1.3,
+          ),
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        hintStyle: hintStyle ?? TextStyles.font14LightGrayRegular,
         hintText: hintText,
         suffixIcon: suffixIcon,
+        fillColor: backgroundColor ?? ColorsManager.moreLightGray,
         filled: true,
-        fillColor:backgroundColor?? ColorsManager.moreLightGray
       ),
-      style:TextStyles.font14DarkBlueMedium,
-      obscureText: isObscureText??false,
+      obscureText: isObscureText ?? false,
+      style: TextStyles.font14DarkBlueMedium,
       validator: (value) {
         return validator(value);
       },
-
-
     );
   }
 }
