@@ -16,6 +16,5 @@ class LoginRepo{
    } catch(error){
      return ApiResult.failure(ErrorHandler.handle(error));
    }
-
   }
 }
