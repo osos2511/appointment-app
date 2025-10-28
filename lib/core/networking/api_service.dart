@@ -1,4 +1,6 @@
 //step 6
+import 'package:appoinment_app/features/sign_up/data/models/sign_up_request_body.dart';
+import 'package:appoinment_app/features/sign_up/data/models/sign_up_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../features/login/data/models/login_request_body.dart';
@@ -15,8 +17,8 @@ abstract class ApiService {
       @Body() LoginRequestBody loginRequestBody,
       );
 
-  // @POST(ApiConstants.signup)
-  // Future<SignupResponse> signup(
-  //     @Body() SignupRequestBody signupRequestBody,
-  //     );
+  @POST(ApiConstants.register)
+  Future<SignUpResponse> signup(
+      @Body() SignUpRequestBody signupRequestBody,
+      );
 }
